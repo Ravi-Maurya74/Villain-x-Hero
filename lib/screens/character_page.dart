@@ -22,7 +22,7 @@ class CharacterPage extends StatelessWidget {
   }
 
   String checkString(String s) {
-    if (s == '-') return 'NO DATA';
+    if (s==null || s == '-') return 'NO DATA';
     return s;
   }
 
@@ -49,7 +49,7 @@ class CharacterPage extends StatelessWidget {
             Hero(
               tag: 'HeroImage${data['id']}',
               child: Image(
-                image: NetworkImage(data['image']['url']),
+                image: NetworkImage(data['images']['lg']),
                 height: mediaQueryData.size.height * 0.4,
                 width: mediaQueryData.size.width * 0.6,
               ),
@@ -63,7 +63,7 @@ class CharacterPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Text(
-              'Race: ${checkString(data['appearance']['race'])}',
+              'Race: ${checkString(data['appearance']['race']==null?'NO DATA':data['appearance']['race'])}',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: smallTextSize,
@@ -71,7 +71,7 @@ class CharacterPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Text(
-              'From: ${checkString(data['biography']['place-of-birth'])}',
+              'From: ${checkString(data['biography']['placeOfBirth'])}',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: smallTextSize,
@@ -87,7 +87,7 @@ class CharacterPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Text(
-              'Affiliation: ${checkString(trimString(data['connections']['group-affiliation'].toString()))}',
+              'Affiliation: ${checkString(trimString(data['connections']['groupAffiliation'].toString()))}',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: smallTextSize,
@@ -102,15 +102,15 @@ class CharacterPage extends StatelessWidget {
               children: [
                 Scorecard(
                   title: 'Intelligence',
-                  value: data['powerstats']['intelligence'],
+                  value: data['powerstats']['intelligence'].toString(),
                 ),
                 Scorecard(
                   title: 'Strength',
-                  value: data['powerstats']['strength'],
+                  value: data['powerstats']['strength'].toString(),
                 ),
                 Scorecard(
                   title: 'Speed',
-                  value: data['powerstats']['speed'],
+                  value: data['powerstats']['speed'].toString(),
                 ),
               ],
             ),
@@ -122,11 +122,11 @@ class CharacterPage extends StatelessWidget {
               children: [
                 Scorecard(
                   title: 'Combat',
-                  value: data['powerstats']['combat'],
+                  value: data['powerstats']['combat'].toString(),
                 ),
                 Scorecard(
                   title: 'Durability',
-                  value: data['powerstats']['durability'],
+                  value: data['powerstats']['durability'].toString(),
                 ),
               ],
             ),

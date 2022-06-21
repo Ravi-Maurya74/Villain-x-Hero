@@ -3,39 +3,39 @@ import 'package:villain_x_hero/services/networking.dart';
 import 'dart:math';
 import 'package:villain_x_hero/screens/character_page.dart';
 
-List<int> broken = [
-  51,
-  54,
-  74,
-  101,
-  113,
-  117,
-  124,
-  131,
-  133,
-  134,
-  143,
-  164,
-  205,
-  244,
-  283,
-  290,
-  291,
-  292,
-  377,
-  447,
-  453,
-  465,
-  511,
-  512,
-  552,
-  553,
-  603,
-  629,
-  662,
-  694,
-  698,
-];
+// List<int> broken = [
+//   51,
+//   54,
+//   74,
+//   101,
+//   113,
+//   117,
+//   124,
+//   131,
+//   133,
+//   134,
+//   143,
+//   164,
+//   205,
+//   244,
+//   283,
+//   290,
+//   291,
+//   292,
+//   377,
+//   447,
+//   453,
+//   465,
+//   511,
+//   512,
+//   552,
+//   553,
+//   603,
+//   629,
+//   662,
+//   694,
+//   698,
+// ];
 
 class ImageWidget extends StatefulWidget {
   final int index;
@@ -49,17 +49,19 @@ class _ImageWidgetState extends State<ImageWidget> {
   Future getImage(void Function() load) async {
     Random random = new Random();
     late int finalIndex;
+    var data;
     do {
       int randomNumber = random.nextInt(1000);
       print('random = $randomNumber');
       finalIndex = (randomNumber) % 733;
       finalIndex++;
-    } while (broken.contains(finalIndex));
-    var data = await NetworkHelper(
-            url: 'https://superheroapi.com/api/283447910281540/$finalIndex')
-        .getData();
-    url = data['image']['url'];
-    id = data['id'];
+      data = await NetworkHelper(
+          url: 'https://akabab.github.io/superhero-api/api/id/$finalIndex.json')
+          .getData();
+    } while (data==null);
+
+    url = data['images']['lg'];
+    id = data['id'].toString();
     name = data['name'];
     characterData = data;
     load();
