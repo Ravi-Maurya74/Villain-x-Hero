@@ -55,7 +55,7 @@ class CharacterPage extends StatelessWidget {
               ),
             ),
             Text(
-              'Name: ${checkString(data['biography']['aliases'][0])}',
+              'Name: ${checkString(data['biography']['fullName']==''?data['biography']['aliases'][0]:data['biography']['fullName'])}',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: smallTextSize,
