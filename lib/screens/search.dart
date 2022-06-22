@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'temp_screen.dart';
 import 'package:villain_x_hero/services/networking.dart';
+import 'package:villain_x_hero/services/search_hero.dart';
 
 class SearchSheet extends StatefulWidget {
   @override
@@ -60,14 +61,17 @@ class _SearchSheetState extends State<SearchSheet> {
                   });
                   dynamic data = await NetworkHelper(
                           url:
-                              'https://www.superheroapi.com/api.php/283447910281540/search/$name')
+                              'https://akabab.github.io/superhero-api/api/all.json')
                       .getData();
-                  // print(data);
-                  if (data['response'] == 'success')
+                  print(data);
+                  print(data.runtimeType);
+                  var result = searchHero(data, name);
+                  print(result);
+                  if (result.isNotEmpty)
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TempPage(data: data)));
+                            builder: (context) => TempPage(data: result)));
                   setState(() {
                     loading = false;
                   });

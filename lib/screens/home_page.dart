@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
           backgroundColor: Colors.black,
         ),
         body: Container(
-          decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/bck.jpg'),fit: BoxFit.fill)),
+          decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/bck2.jpg'),fit: BoxFit.fill)),
           child: GridView.builder(
             gridDelegate:
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),

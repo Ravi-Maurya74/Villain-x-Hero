@@ -48,10 +48,10 @@ class ImageWidget extends StatefulWidget {
 class _ImageWidgetState extends State<ImageWidget> {
   Future getImage(void Function() load) async {
     var data = await NetworkHelper(
-            url: 'https://superheroapi.com/api/283447910281540/${widget.index}')
+            url: 'https://akabab.github.io/superhero-api/api/id/${widget.index}.json')
         .getData();
-    url = data['image']['url'];
-    id = data['id'];
+    url = data['images']['lg'];
+    id = data['id'].toString();
     name = data['name'];
     characterData = data;
     load();

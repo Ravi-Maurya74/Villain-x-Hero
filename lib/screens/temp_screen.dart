@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:villain_x_hero/widgets/image2.dart';
 
 class TempPage extends StatelessWidget {
-  final dynamic data;
+  final List<dynamic> data;
   TempPage({required this.data});
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class TempPage extends StatelessWidget {
         backgroundColor: Colors.black,
       ),
       body: Container(
-        color: Colors.white,
+        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/bck2.jpg'),fit: BoxFit.fill)),
         child: GridView.builder(
           gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
@@ -27,9 +27,10 @@ class TempPage extends StatelessWidget {
           itemBuilder: (context, index) {
             print(data);
             return ImageWidget(
-                index: int.parse(data['results'][index]['id'].toString()));
+              index: int.parse(data[index]['id'].toString()),
+            );
           },
-          itemCount: (data['results'] as List<dynamic>).length,
+          itemCount: (data).length,
         ),
       ),
     );
